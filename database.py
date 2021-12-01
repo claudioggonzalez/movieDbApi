@@ -26,7 +26,7 @@ class Database:
 		return self.cursor.fetchall()
 
 	def getMovieBatch(self, batchSize: int, limitDate: str):
-		self.cursor.execute(f"SELECT * FROM movieData WHERE status = 1 AND subtitle = true AND downloadDate >= date('{limitDate}') ORDER BY downloadDate ASC LIMIT {batchSize}")
+		self.cursor.execute(f"SELECT * FROM movieData WHERE status = 1 AND subtitle = true AND year >= 2020 AND downloadDate >= date('{limitDate}') ORDER BY downloadDate ASC LIMIT {batchSize}")
 		return self.cursor.fetchall()
 
 	def addMovie(self, title: str, altTitle:str=None, year:int=None, originCountry:str=None, releaseDate:str=None, downloadDate:str=None, subtitle:bool=False,status:int=0):
