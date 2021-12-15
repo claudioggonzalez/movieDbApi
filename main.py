@@ -48,16 +48,23 @@ def convertToJson(mode, idx, name=None):
 	else:
 		query = db.getAllMovies()
 
-	for data in query:
-		listData.append({"id": data[0],
-						"title": data[1],
-						"altTile": data[2],
-						"year": data[3],
-						"originCountry": data[4],
-						"releaseDate": data[5],
-						"downloadDate": data[6],
-						"subtitle": data[7],
-						"status": data[8]})
+	if mode != "batch":
+		for data in query:
+			listData.append({"id": data[0],
+							"title": data[1],
+							"altTile": data[2],
+							"year": data[3],
+							"originCountry": data[4],
+							"releaseDate": data[5],
+							"downloadDate": data[6],
+							"subtitle": data[7],
+							"status": data[8]})
+	else:
+		for data in query:
+			listData.append({"title": data[1],
+							"altTile": data[2],
+							"year": data[3]})
+
 	return listData
 
 #@app.get("/api/", dependencies=[Depends(verify_key)])
